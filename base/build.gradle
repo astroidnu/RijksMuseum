@@ -1,15 +1,16 @@
-apply plugin: 'com.android.application'
-
+apply plugin: 'com.android.feature'
 apply plugin: 'kotlin-android'
-
 apply plugin: 'kotlin-android-extensions'
-
 apply plugin: 'kotlin-kapt'
+
 
 android {
     compileSdkVersion 28
+
+
+    baseFeature true
+
     defaultConfig {
-        applicationId "com.scoproject.rijksmuseum"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
@@ -17,7 +18,11 @@ android {
         multiDexEnabled true
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        buildConfigField "String", "API_KEY", "\"I0fyUrK3\""
+        buildConfigField "String", "BASE_URL", "\"https://www.rijksmuseum.nl/api/\""
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -29,8 +34,8 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
-
 }
+
 
 kapt {
     generateStubs = false
@@ -41,35 +46,9 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
 
-    implementation project(path: ':base')
-
-    // Android runner and rules support
-    androidTestImplementation(androidRunner) {
-        androidTestImplementation(androidRules) {
-            exclude module: 'support-annotations'
-            exclude module: 'support-annotations'
-        }
-    }
-
-    // Espresso support
-    androidTestImplementation(espressoDependencies.espressoCore) {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    }
-
-    // add this for intent mocking support
-    androidTestImplementation(espressoDependencies.espressoIntents) {
-        exclude module: 'support-annotations'
-    }
-
-    // add this for webview testing support
-    androidTestImplementation espressoDependencies.espressoWeb
     androidTestImplementation mockito
     testImplementation mockito
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
-    testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
-
-    //Kotlin Dependencies Kapt
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //Support Dependencies
     implementation supportDependencies.appcompatv7
@@ -80,6 +59,9 @@ dependencies {
     implementation supportDependencies.customtabs
     implementation supportDependencies.contraintLayout
     implementation supportDependencies.multidex
+
+    //Kotlin Dependencies Kapt
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 
     //RxJava 2
     implementation rxDependencies.rxJava
@@ -100,5 +82,4 @@ dependencies {
     implementation daggerDependencies.daggerAndroid
     kapt daggerDependencies.daggerCompiler
     kapt daggerDependencies.daggerAndroidProcessor
-
 }

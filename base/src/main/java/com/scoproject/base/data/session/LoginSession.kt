@@ -2,13 +2,14 @@ package com.tunaikumobile.base.data.session
 
 import android.app.Application
 import android.content.Context
+import javax.inject.Inject
 
 /**
  * Created by ibnumuzzakkir on 11/10/17.
  * Android Engineer
  * SCO Project
  */
-class LoginSession constructor(application: Application) {
+class LoginSession @Inject constructor(application: Application) {
     var isLogin: Boolean = false
 
     object TAG {

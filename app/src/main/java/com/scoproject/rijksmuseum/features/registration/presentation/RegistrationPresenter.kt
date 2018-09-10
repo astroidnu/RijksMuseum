@@ -15,8 +15,8 @@ class RegistrationPresenter @Inject constructor(private val router: Registration
                                                 schedulerProvider: SchedulerProvider) :
         BasePresenter<RegistrationContract.View>(schedulerProvider), RegistrationContract.UserActionListener {
 
-    override fun isUsenameValid(username: String): Boolean {
-        return username.isNotEmpty()
+    override fun isUsenameValid(userName: String): Boolean {
+        return userName.isNotEmpty()
     }
 
     override fun isPasswordValid(password: String): Boolean {

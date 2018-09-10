@@ -13,7 +13,7 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 09/09/18.
  * Mobile Engineer
  */
-class RiskMuseumApp : MultiDexApplication(), HasActivityInjector {
+class RijskMuseumApp : MultiDexApplication(), HasActivityInjector {
     companion object {
         @JvmStatic
         lateinit var appComponent: AppComponent

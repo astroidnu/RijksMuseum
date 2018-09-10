@@ -2,10 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.scoproject.rijksmuseum">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".RiskMuseumApp"
+        android:name=".RijskMuseumApp"
         android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,20 +13,29 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:theme="@style/Theme.AppCompat.NoActionBar"
-            android:name=".features.splashscreen.presentation.SplashScreenActivity">
+            android:name=".features.splashscreen.presentation.SplashScreenActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+        </activity>
+        <activity android:name=".features.login.presentation.LoginActivity" />
+        <activity android:name=".features.registration.presentation.RegistrationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.scoproject.rijksmuseum.features.login.presentation.LoginActivity" />
+        </activity>
+        <activity
+            android:label="@string/app_name"
+            android:name=".features.listart.presentation.ListArtActivity"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".features.login.presentation.LoginActivity"/>
-        <activity android:name=".features.registration.presentation.RegistrationActivity">
-            <meta-data
-                android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.scoproject.rijksmuseum.features.login.presentation.LoginActivity" />
-        </activity>
+        <activity
+            android:theme="@style/AppTheme.NoActionBar"
+            android:label="@string/app_name"
+            android:name=".features.profile.presentation.ProfileActivity"/>
     </application>
 
 </manifest>

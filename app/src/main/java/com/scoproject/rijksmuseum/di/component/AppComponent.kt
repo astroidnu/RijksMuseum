@@ -2,7 +2,7 @@ package com.scoproject.rijksmuseum.di.component
 
 import android.app.Application
 import com.scoproject.base.di.scope.AppScope
-import com.scoproject.rijksmuseum.RiskMuseumApp
+import com.scoproject.rijksmuseum.RijskMuseumApp
 import com.scoproject.rijksmuseum.di.module.AppModule
 import com.scoproject.rijksmuseum.di.module.builder.ActivityBuilder
 import dagger.BindsInstance
@@ -28,5 +28,5 @@ interface AppComponent {
         fun build(): AppComponent
     }
 
-    fun inject(app: RiskMuseumApp)
+    fun inject(app: RijskMuseumApp)
 }

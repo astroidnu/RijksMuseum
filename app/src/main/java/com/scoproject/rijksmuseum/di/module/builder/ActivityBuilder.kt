@@ -1,8 +1,12 @@
 package com.scoproject.rijksmuseum.di.module.builder
 
 import com.scoproject.base.di.scope.ActivityScope
+import com.scoproject.rijksmuseum.features.listart.di.ListArtModule
+import com.scoproject.rijksmuseum.features.listart.presentation.ListArtActivity
 import com.scoproject.rijksmuseum.features.login.di.LoginModule
 import com.scoproject.rijksmuseum.features.login.presentation.LoginActivity
+import com.scoproject.rijksmuseum.features.profile.di.ProfileModule
+import com.scoproject.rijksmuseum.features.profile.presentation.ProfileActivity
 import com.scoproject.rijksmuseum.features.registration.di.RegistrationModule
 import com.scoproject.rijksmuseum.features.registration.presentation.RegistrationActivity
 import com.scoproject.rijksmuseum.features.splashscreen.di.SplashScreenModule
@@ -28,4 +32,12 @@ abstract class ActivityBuilder {
     @ActivityScope
     @ContributesAndroidInjector(modules = [(RegistrationModule::class)])
     internal abstract fun bindRegisterActivity(): RegistrationActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [(ListArtModule::class)])
+    internal abstract fun bindListArtActivity(): ListArtActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [(ProfileModule::class)])
+    internal abstract fun bindProfileActivity(): ProfileActivity
 }

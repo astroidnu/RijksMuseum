@@ -14,6 +14,7 @@ class LoginSession @Inject constructor(application: Application) {
 
     object TAG {
         const val PREF_TOKEN = "token"
+        const val PREF_USERNAME = "username"
     }
 
     var pref = Pref(application)
@@ -41,4 +42,14 @@ class LoginSession @Inject constructor(application: Application) {
         pref._setString(TAG.PREF_TOKEN, token)
         isLogin = true
     }
+
+    fun getUsername(): String {
+        return pref._getString(TAG.PREF_USERNAME, "")!!
+    }
+
+    fun saveUsername(token: String) {
+        pref._setString(TAG.PREF_USERNAME, token)
+    }
+
+
 }

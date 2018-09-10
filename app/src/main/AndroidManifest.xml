@@ -36,6 +36,13 @@
             android:theme="@style/AppTheme.NoActionBar"
             android:label="@string/app_name"
             android:name=".features.profile.presentation.ProfileActivity"/>
+        <activity
+            android:label="Detail"
+            android:name=".features.detailart.presentation.DetailArtActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.scoproject.rijksmuseum.features.listart.presentation.ListArtActivity" />
+        </activity>
     </application>
 
 </manifest>

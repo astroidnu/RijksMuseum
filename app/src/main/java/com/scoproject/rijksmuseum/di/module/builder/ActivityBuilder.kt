@@ -1,6 +1,8 @@
 package com.scoproject.rijksmuseum.di.module.builder
 
 import com.scoproject.base.di.scope.ActivityScope
+import com.scoproject.rijksmuseum.features.detailart.di.DetailArtModule
+import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtActivity
 import com.scoproject.rijksmuseum.features.listart.di.ListArtModule
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtActivity
 import com.scoproject.rijksmuseum.features.login.di.LoginModule
@@ -40,4 +42,8 @@ abstract class ActivityBuilder {
     @ActivityScope
     @ContributesAndroidInjector(modules = [(ProfileModule::class)])
     internal abstract fun bindProfileActivity(): ProfileActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [(DetailArtModule::class)])
+    internal abstract fun bindDetailArtActivity(): DetailArtActivity
 }

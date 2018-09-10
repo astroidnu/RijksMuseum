@@ -1,25 +1,24 @@
-package com.scoproject.rijksmuseum.features.listart.presentation
+package com.scoproject.rijksmuseum.features.detailart.presentation
 
 import com.scoproject.base.presentation.ui.view.BaseView
-import com.scoproject.rijksmuseum.data.response.ArtObject
 
 /**
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class ListArtContract {
+class DetailArtContract {
     interface View : BaseView {
-        fun setupAdapter(data : ArtObject.Response)
+        fun setupContent(imageUrl : String?, artDesc: String?)
         fun showError(msg: String)
         fun showLoading()
         fun hideLoading()
     }
 
     interface UserActionListener {
-        fun getCollections()
+        fun getDetailCollection(objectNumber: String)
     }
 
     interface Router {
-        fun navigateToDetailCollection(objectNumber: String)
+
     }
 }

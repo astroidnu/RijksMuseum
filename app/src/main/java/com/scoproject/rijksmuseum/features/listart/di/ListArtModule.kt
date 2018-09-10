@@ -39,10 +39,8 @@ class ListArtModule {
 
 
     @Provides @ActivityScope
-    internal fun provideListArtPresenter(router: ListArtRouter,
-                                         useCase: ListArtUseCase,
+    internal fun provideListArtPresenter(useCase: ListArtUseCase,
                                          scheduler: AppSchedulerProvider) =
-            ListArtPresenter(router,
-                    useCase,
+            ListArtPresenter(useCase,
                     scheduler)
 }

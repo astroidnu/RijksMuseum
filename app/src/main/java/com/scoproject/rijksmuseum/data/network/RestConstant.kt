@@ -8,4 +8,5 @@ import com.scoproject.base.BuildConfig
  */
 object RestConstant {
     const val collections = "en/collection?key=${BuildConfig.API_KEY}&format=json"
+    const val getDetailCollection = "en/collection/{objectNumber}?key=${BuildConfig.API_KEY}&format=json"
 }

@@ -12,6 +12,7 @@ interface ScreenRouter {
         object SplashScreen : ActivityScreen()
         object LoginScreen : ActivityScreen()
         object RegistrationScreen : ActivityScreen()
+        object DetailCollectionScreen : ActivityScreen()
     }
 
     fun getScreenIntent(context: Context, screen: ActivityScreen): Intent?

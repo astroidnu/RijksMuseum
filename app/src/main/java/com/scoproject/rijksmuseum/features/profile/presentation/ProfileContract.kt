@@ -8,14 +8,15 @@ import com.scoproject.base.presentation.ui.view.BaseView
  */
 class ProfileContract {
     interface View : BaseView {
-
+        fun setupUIContent()
+        fun setupUIListener()
     }
 
     interface UserActionListener {
-
+        fun logout()
     }
 
     interface Router {
-
+        fun goToLoginPage()
     }
 }

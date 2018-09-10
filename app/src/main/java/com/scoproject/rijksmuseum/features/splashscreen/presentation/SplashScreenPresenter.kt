@@ -20,7 +20,7 @@ class SplashScreenPresenter @Inject constructor(val loginSession: LoginSession,
      * */
 
     override fun checkUserLogin() {
-        if(loginSession.isLogin){
+        if(loginSession.getUsername().isNotEmpty()){
             splashRouter.goToMainPage()
         }else {
             splashRouter.goToLoginPage()

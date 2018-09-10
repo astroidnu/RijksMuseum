@@ -11,5 +11,9 @@ import javax.inject.Inject
  */
 class ProfileRouter @Inject constructor(val screenRouter: ScreenRouter
                                         , val context: Activity) : ProfileContract.Router{
+    override fun goToLoginPage() {
+        screenRouter.getScreenIntent(context, ScreenRouter.ActivityScreen.LoginScreen)
+                ?.run { context.startActivity(this) }
+    }
 
 }

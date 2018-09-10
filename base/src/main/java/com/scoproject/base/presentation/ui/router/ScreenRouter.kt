@@ -12,6 +12,7 @@ interface ScreenRouter {
         object SplashScreen : ActivityScreen()
         object LoginScreen : ActivityScreen()
         object RegistrationScreen : ActivityScreen()
+        object ListArtScreen : ActivityScreen()
         object DetailCollectionScreen : ActivityScreen()
     }
 

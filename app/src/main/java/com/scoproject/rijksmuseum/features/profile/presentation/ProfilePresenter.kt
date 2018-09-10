@@ -10,10 +10,15 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class ProfilePresenter @Inject constructor(router: ProfileRouter,
-                                           loginSession: LoginSession,
+class ProfilePresenter @Inject constructor(private val router: ProfileRouter,
+                                           private val loginSession: LoginSession,
                                            schedulerProvider: SchedulerProvider) :
         BasePresenter<ProfileContract.View>(schedulerProvider),
         ProfileContract.UserActionListener {
+
+    override fun logout() {
+        loginSession.clear()
+        router.goToLoginPage()
+    }
 
 }

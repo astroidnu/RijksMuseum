@@ -1,5 +1,6 @@
 package com.scoproject.rijksmuseum.features.registration.presentation
 
+import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.rijksmuseum.features.registration.domain.RegistrationRouter
@@ -10,7 +11,8 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class RegistrationPresenter @Inject constructor(private val router: RegistrationRouter,
+class RegistrationPresenter @Inject constructor(private val userModel: UserModel,
+                                                private val router: RegistrationRouter,
                                                 private val loginSession: LoginSession,
                                                 schedulerProvider: SchedulerProvider) :
         BasePresenter<RegistrationContract.View>(schedulerProvider), RegistrationContract.UserActionListener {
@@ -33,12 +35,8 @@ class RegistrationPresenter @Inject constructor(private val router: Registration
         }else if(isUsenameValid(userName) && isPasswordValid(userName) && !isCheckedTermAndCondition) {
             view?.showError("Checkbox should be check")
         }else {
-            view?.showError("Do Registration")
+            userModel.saveUser(userName,password)
+            router.goToLoginPage()
         }
     }
-
-    override fun saveUserData(userName: String, password: String) {
-
-    }
-
 }

@@ -2,6 +2,7 @@ package com.scoproject.rijksmuseum.di.module
 
 import android.app.Application
 import android.content.Context
+import com.scoproject.base.data.database.MyObjectBox
 import com.scoproject.base.di.scope.AppScope
 import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
@@ -23,5 +24,9 @@ class AppModule {
 
     @Provides @AppScope
     fun provideScreenRouter(): ScreenRouter = ScreenRouterImpl()
+
+    @Provides @AppScope
+    internal fun provideObjectBox(context: Context) =  MyObjectBox.builder().androidContext(context).build()
+
 
 }

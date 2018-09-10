@@ -15,7 +15,7 @@ class LoginContract {
 
     interface UserActionListener {
         fun doLogin(userName: String, password: String)
-        fun isUserRegistered() : Boolean
+        fun isUserRegistered(userName: String, password: String) : Boolean
     }
 
     interface Router {

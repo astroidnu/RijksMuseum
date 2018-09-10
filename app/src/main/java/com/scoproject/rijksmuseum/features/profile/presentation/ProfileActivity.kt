@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import com.scoproject.rijksmuseum.R
 import com.scoproject.rijksmuseum.presentation.BaseNavigationDrawerActivity
+import kotlinx.android.synthetic.main.activity_profile.*
 import javax.inject.Inject
 
 /**
@@ -20,6 +21,17 @@ class ProfileActivity : BaseNavigationDrawerActivity(), ProfileContract.View {
         val container: LinearLayout = findViewById(R.id.content_frame)
         inflater.inflate(R.layout.activity_profile, container)
         mPresenter.attachView(this)
+        setupUIListener()
+        setupUIContent()
+    }
+
+    override fun setupUIContent() {
+        tvProfileUsername.text = mLoginSession.getUsername()
+    }
+
+
+    override fun setupUIListener() {
+        btnLogout.setOnClickListener { mPresenter.logout() }
     }
 
     override fun onDestroy() {

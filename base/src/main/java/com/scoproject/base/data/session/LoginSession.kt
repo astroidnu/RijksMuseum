@@ -13,7 +13,6 @@ class LoginSession @Inject constructor(application: Application) {
     var isLogin: Boolean = false
 
     object TAG {
-        const val PREF_TOKEN = "token"
         const val PREF_USERNAME = "username"
     }
 
@@ -33,22 +32,19 @@ class LoginSession @Inject constructor(application: Application) {
         }
     }
 
-
-    fun getLoginToken(): String {
-        return pref._getString(TAG.PREF_TOKEN, "")!!
-    }
-
-    fun saveToken(token: String) {
-        pref._setString(TAG.PREF_TOKEN, token)
-        isLogin = true
-    }
-
     fun getUsername(): String {
         return pref._getString(TAG.PREF_USERNAME, "")!!
     }
 
     fun saveUsername(token: String) {
         pref._setString(TAG.PREF_USERNAME, token)
+        isLogin = true
+    }
+
+    fun clear() {
+        //clear the login session
+        pref._clear()
+        isLogin = false
     }
 
 

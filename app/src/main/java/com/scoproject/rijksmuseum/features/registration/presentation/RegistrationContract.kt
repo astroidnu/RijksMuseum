@@ -16,7 +16,6 @@ class RegistrationContract {
         fun isUsenameValid(userName: String) : Boolean
         fun isPasswordValid(password: String) : Boolean
         fun doRegistration(userName : String, password: String,isCheckedTermAndCondition: Boolean)
-        fun saveUserData(userName: String, password: String)
     }
 
     interface Router {

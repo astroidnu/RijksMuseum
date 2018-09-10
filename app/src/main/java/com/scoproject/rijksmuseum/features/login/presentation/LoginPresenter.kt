@@ -1,5 +1,6 @@
 package com.scoproject.rijksmuseum.features.login.presentation
 
+import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.rijksmuseum.features.login.domain.LoginRouter
@@ -10,7 +11,8 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 09/09/18.
  * Mobile Engineer
  */
-class LoginPresenter @Inject constructor(private val loginRouter: LoginRouter,
+class LoginPresenter @Inject constructor(private val userModel: UserModel,
+                                         private val loginRouter: LoginRouter,
                                          private val loginSession: LoginSession,
                                          schedulerProvider: SchedulerProvider):
         BasePresenter<LoginContract.View>(schedulerProvider),
@@ -23,7 +25,8 @@ class LoginPresenter @Inject constructor(private val loginRouter: LoginRouter,
         }else if(userName.isEmpty() && password.isEmpty()){
             view?.showError("Username and password should not be empty")
         }else {
-            if(isUserRegistered()){
+            if(isUserRegistered(userName,password)){
+                loginSession.saveUsername(userName)
                 loginRouter.goToMainPage()
             }else{
                 view?.showError("Do Registration")
@@ -31,8 +34,9 @@ class LoginPresenter @Inject constructor(private val loginRouter: LoginRouter,
         }
     }
 
-    override fun isUserRegistered(): Boolean {
-        return false
+    override fun isUserRegistered(userName: String, password: String): Boolean {
+        return userModel.getUserData(userName,password)!= null
+
     }
 
 

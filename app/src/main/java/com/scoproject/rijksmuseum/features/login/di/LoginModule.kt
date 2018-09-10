@@ -1,5 +1,6 @@
 package com.scoproject.rijksmuseum.features.login.di
 
+import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.di.scope.ActivityScope
 import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
@@ -28,10 +29,12 @@ class LoginModule {
 
 
     @Provides @ActivityScope
-    internal fun provideLoginPresenter(loginRouter: LoginRouter,
+    internal fun provideLoginPresenter(userModel: UserModel,
+                                       loginRouter: LoginRouter,
                                        loginSession: LoginSession,
                                        scheduler: AppSchedulerProvider) =
-            LoginPresenter(loginRouter,
+            LoginPresenter(userModel,
+                    loginRouter,
                     loginSession,
                     scheduler)
 }

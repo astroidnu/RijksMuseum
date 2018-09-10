@@ -86,4 +86,15 @@ dependencies {
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+
+    //objectBox
+    debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"
+    releaseImplementation "io.objectbox:objectbox-android:$objectboxVersion"
+    implementation objectBoxDependencies.objectboxKotlin
+    kapt objectBoxDependencies.objectBoxProcessor
+
+    //Circular ImageView
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
 }
+
+apply plugin: 'io.objectbox'

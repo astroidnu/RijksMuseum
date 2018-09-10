@@ -1,5 +1,6 @@
 package com.scoproject.rijksmuseum.features.registration.di
 
+import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.di.scope.ActivityScope
 import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
@@ -28,10 +29,12 @@ class RegistrationModule {
 
 
     @Provides @ActivityScope
-    internal fun provideRegistrationPresenter(router: RegistrationRouter,
-                                       loginSession: LoginSession,
-                                       scheduler: AppSchedulerProvider) =
-            RegistrationPresenter(router,
+    internal fun provideRegistrationPresenter(userModel: UserModel,
+                                              router: RegistrationRouter,
+                                              loginSession: LoginSession,
+                                              scheduler: AppSchedulerProvider) =
+            RegistrationPresenter(userModel,
+                    router,
                     loginSession,
                     scheduler)
 }

@@ -31,7 +31,7 @@ class LoginPresenter @Inject constructor(private val userModel: UserModel,
                 loginSession.saveUsername(userName)
                 loginRouter.goToMainPage()
             }else{
-                view?.showError("Do Registration")
+                view?.showError("Authentication Failed !")
             }
         }
     }

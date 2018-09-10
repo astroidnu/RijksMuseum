@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:label="Login"
+            android:label="Rijsk Museum App"
             android:name=".features.login.presentation.LoginActivity"/>
     </application>
 

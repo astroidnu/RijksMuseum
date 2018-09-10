@@ -11,5 +11,12 @@ import javax.inject.Inject
  */
 class LoginRouter @Inject constructor(val screenRouter: ScreenRouter
                                       ,val mContext: Activity) : LoginContract.Router{
+    override fun goToMainPage() {
+
+    }
+
+    override fun goToRegistrationPage() {
+
+    }
 
 }

@@ -9,14 +9,17 @@ import com.scoproject.base.presentation.ui.view.BaseView
 
 class LoginContract {
     interface View : BaseView {
-
+        fun setupUIListener()
+        fun showError(msg :String)
     }
 
     interface UserActionListener {
-
+        fun doLogin(userName: String, password: String)
+        fun isUserRegistered() : Boolean
     }
 
     interface Router {
-
+        fun goToMainPage()
+        fun goToRegistrationPage()
     }
 }

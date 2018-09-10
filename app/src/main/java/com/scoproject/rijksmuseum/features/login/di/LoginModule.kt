@@ -7,6 +7,7 @@ import com.scoproject.rijksmuseum.features.login.domain.LoginRouter
 import com.scoproject.rijksmuseum.features.login.presentation.LoginActivity
 import com.scoproject.rijksmuseum.features.login.presentation.LoginContract
 import com.scoproject.rijksmuseum.features.login.presentation.LoginPresenter
+import com.tunaikumobile.base.data.session.LoginSession
 import dagger.Module
 import dagger.Provides
 
@@ -27,5 +28,10 @@ class LoginModule {
 
 
     @Provides @ActivityScope
-    internal fun provideLoginPresenter(scheduler: AppSchedulerProvider) = LoginPresenter(scheduler)
+    internal fun provideLoginPresenter(loginRouter: LoginRouter,
+                                       loginSession: LoginSession,
+                                       scheduler: AppSchedulerProvider) =
+            LoginPresenter(loginRouter,
+                    loginSession,
+                    scheduler)
 }

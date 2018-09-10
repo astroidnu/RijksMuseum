@@ -1,9 +1,10 @@
 package com.scoproject.rijksmuseum.features.listart.presentation
 
+import android.util.Log
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.rijksmuseum.features.listart.domain.ListArtRouter
-import com.tunaikumobile.base.data.session.LoginSession
+import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
 import javax.inject.Inject
 
 /**
@@ -11,9 +12,18 @@ import javax.inject.Inject
  * Mobile Engineer
  */
 class ListArtPresenter @Inject constructor(listArtRouter: ListArtRouter,
-                                           loginSession: LoginSession,
+                                           private val useCase: ListArtUseCase,
                                            schedulerProvider: SchedulerProvider) :
         BasePresenter<ListArtContract.View>(schedulerProvider),
         ListArtContract.UserActionListener {
+
+    override fun getCollections() {
+        addDisposable(useCase.getCollections()
+                .subscribe({ response ->
+                        view?.setupAdapter(response)
+                }, { err ->
+                    Log.d(javaClass.name, err.message.toString())
+                }))
+    }
 
 }

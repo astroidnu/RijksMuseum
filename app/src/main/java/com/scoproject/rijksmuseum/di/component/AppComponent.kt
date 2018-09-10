@@ -4,6 +4,7 @@ import android.app.Application
 import com.scoproject.base.di.scope.AppScope
 import com.scoproject.rijksmuseum.RijskMuseumApp
 import com.scoproject.rijksmuseum.di.module.AppModule
+import com.scoproject.rijksmuseum.di.module.NetworkModule
 import com.scoproject.rijksmuseum.di.module.builder.ActivityBuilder
 import dagger.BindsInstance
 import dagger.Component
@@ -17,6 +18,7 @@ import dagger.android.AndroidInjectionModule
 @Component(modules = [
     (AndroidInjectionModule::class),
     (AppModule::class),
+    (NetworkModule::class),
     (ActivityBuilder::class)
 ])
 interface AppComponent {

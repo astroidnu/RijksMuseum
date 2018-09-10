@@ -10,13 +10,14 @@ import javax.inject.Inject
  * Mobile Engineer
  */
 class LoginRouter @Inject constructor(val screenRouter: ScreenRouter
-                                      ,val mContext: Activity) : LoginContract.Router{
+                                      ,val context: Activity) : LoginContract.Router{
     override fun goToMainPage() {
 
     }
 
     override fun goToRegistrationPage() {
-
+        screenRouter.getScreenIntent(context, ScreenRouter.ActivityScreen.RegistrationScreen)
+                ?.run { context.startActivity(this) }
     }
 
 }

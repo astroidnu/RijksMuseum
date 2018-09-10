@@ -3,6 +3,8 @@ package com.scoproject.rijksmuseum.di.module.builder
 import com.scoproject.base.di.scope.ActivityScope
 import com.scoproject.rijksmuseum.features.login.di.LoginModule
 import com.scoproject.rijksmuseum.features.login.presentation.LoginActivity
+import com.scoproject.rijksmuseum.features.registration.di.RegistrationModule
+import com.scoproject.rijksmuseum.features.registration.presentation.RegistrationActivity
 import com.scoproject.rijksmuseum.features.splashscreen.di.SplashScreenModule
 import com.scoproject.rijksmuseum.features.splashscreen.presentation.SplashScreenActivity
 import dagger.Module
@@ -22,4 +24,8 @@ abstract class ActivityBuilder {
     @ActivityScope
     @ContributesAndroidInjector(modules = [(LoginModule::class)])
     internal abstract fun bindLoginActivity(): LoginActivity
+
+    @ActivityScope
+    @ContributesAndroidInjector(modules = [(RegistrationModule::class)])
+    internal abstract fun bindRegisterActivity(): RegistrationActivity
 }

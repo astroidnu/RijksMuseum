@@ -26,9 +26,8 @@ class LoginPresenter @Inject constructor(private val loginRouter: LoginRouter,
             if(isUserRegistered()){
                 loginRouter.goToMainPage()
             }else{
-                view?.showError("Authentication failed")
+                view?.showError("Do Registration")
             }
-
         }
     }
 

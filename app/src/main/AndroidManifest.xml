@@ -21,9 +21,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:label="Rijsk Museum App"
-            android:name=".features.login.presentation.LoginActivity"/>
+        <activity android:name=".features.login.presentation.LoginActivity"/>
+        <activity android:name=".features.registration.presentation.RegistrationActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.scoproject.rijksmuseum.features.login.presentation.LoginActivity" />
+        </activity>
     </application>
 
 </manifest>

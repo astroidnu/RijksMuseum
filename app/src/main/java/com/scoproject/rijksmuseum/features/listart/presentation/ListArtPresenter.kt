@@ -1,6 +1,5 @@
 package com.scoproject.rijksmuseum.features.listart.presentation
 
-import android.util.Log
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
@@ -23,7 +22,7 @@ class ListArtPresenter @Inject constructor(private val useCase: ListArtUseCase,
                     view?.setupAdapter(response)
                 }, { err ->
                     view?.hideLoading()
-                    Log.d(javaClass.name, err.message.toString())
+                    view?.showError(err.message.toString())
                 }))
     }
 

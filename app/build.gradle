@@ -39,16 +39,15 @@ kapt {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    //Testing Dependencies
     testImplementation 'junit:junit:4.12'
-
-    implementation project(path: ':base')
 
     // Android runner and rules support
     androidTestImplementation(androidRunner) {
-        androidTestImplementation(androidRules) {
-            exclude module: 'support-annotations'
-            exclude module: 'support-annotations'
-        }
+        exclude module: 'support-annotations'
+    }
+    androidTestImplementation(androidRules) {
+        exclude module: 'support-annotations'
     }
 
     // Espresso support
@@ -68,8 +67,14 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
 
+
     //Kotlin Dependencies Kapt
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+
+    //Implementation base module
+    testImplementation project(path: ':base')
+    implementation project(path: ':base')
 
     //Support Dependencies
     implementation supportDependencies.appcompatv7

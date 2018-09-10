@@ -3,6 +3,7 @@ package com.scoproject.rijksmuseum.features.registration.presentation
 import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
+import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.registration.domain.RegistrationRouter
 import com.tunaikumobile.base.data.session.LoginSession
 import javax.inject.Inject
@@ -13,29 +14,22 @@ import javax.inject.Inject
  */
 class RegistrationPresenter @Inject constructor(private val userModel: UserModel,
                                                 private val router: RegistrationRouter,
+                                                private val helper : Helper,
                                                 private val loginSession: LoginSession,
                                                 schedulerProvider: SchedulerProvider) :
         BasePresenter<RegistrationContract.View>(schedulerProvider), RegistrationContract.UserActionListener {
-
-    override fun isUsenameValid(userName: String): Boolean {
-        return userName.isNotEmpty()
-    }
-
-    override fun isPasswordValid(password: String): Boolean {
-        return password.isNotEmpty()
-    }
-
     override fun doRegistration(userName: String, password: String, isCheckedTermAndCondition: Boolean) {
-        if(!isUsenameValid(userName)) {
+        if(!helper.isUsenameValid(userName)) {
             view?.showError("Username should not be empty")
-        }else if(!isPasswordValid(password)) {
+        }else if(!helper.isPasswordValid(password)) {
             view?.showError("Password should not be empty")
-        }else if(!isUsenameValid(userName) && !isPasswordValid(userName)) {
+        }else if(!helper.isUsenameValid(userName) && !helper.isPasswordValid(userName)) {
             view?.showError("Username and Password should not be empty")
-        }else if(isUsenameValid(userName) && isPasswordValid(userName) && !isCheckedTermAndCondition) {
+        }else if(helper.isUsenameValid(userName) && helper.isPasswordValid(userName) && !isCheckedTermAndCondition) {
             view?.showError("Checkbox should be check")
         }else {
             userModel.saveUser(userName,password)
+            loginSession.saveUsername(userName)
             router.goToLoginPage()
         }
     }

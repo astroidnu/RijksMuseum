@@ -3,6 +3,7 @@ package com.scoproject.rijksmuseum.features.login.presentation
 import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.external.scheduler.SchedulerProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
+import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.login.domain.LoginRouter
 import com.tunaikumobile.base.data.session.LoginSession
 import javax.inject.Inject
@@ -13,16 +14,17 @@ import javax.inject.Inject
  */
 class LoginPresenter @Inject constructor(private val userModel: UserModel,
                                          private val loginRouter: LoginRouter,
+                                         private val helper: Helper,
                                          private val loginSession: LoginSession,
                                          schedulerProvider: SchedulerProvider):
         BasePresenter<LoginContract.View>(schedulerProvider),
         LoginContract.UserActionListener {
     override fun doLogin(userName: String, password: String) {
-        if(userName.isEmpty()){
+        if(!helper.isUsenameValid(userName)){
             view?.showError("Username should not be empty")
-        } else if(password.isEmpty()) {
+        } else if(!helper.isPasswordValid(password)) {
             view?.showError("Password should not be empty")
-        }else if(userName.isEmpty() && password.isEmpty()){
+        }else if(!helper.isUsenameValid(userName) && !helper.isPasswordValid(password)){
             view?.showError("Username and password should not be empty")
         }else {
             if(isUserRegistered(userName,password)){

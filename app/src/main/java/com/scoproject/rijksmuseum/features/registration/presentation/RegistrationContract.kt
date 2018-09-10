@@ -13,8 +13,6 @@ class RegistrationContract {
     }
 
     interface UserActionListener {
-        fun isUsenameValid(userName: String) : Boolean
-        fun isPasswordValid(password: String) : Boolean
         fun doRegistration(userName : String, password: String,isCheckedTermAndCondition: Boolean)
     }
 

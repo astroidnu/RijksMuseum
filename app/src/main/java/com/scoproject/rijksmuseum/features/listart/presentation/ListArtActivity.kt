@@ -1,6 +1,7 @@
 package com.scoproject.rijksmuseum.features.listart.presentation
 
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import com.bumptech.glide.Glide
 import com.scoproject.base.external.extensions.showToast
@@ -55,13 +56,14 @@ class ListArtActivity : BaseNavigationDrawerActivity(), ListArtContract.View {
     }
 
     override fun showLoading() {
-
+        avLoading.visibility = View.VISIBLE
+        rvListArt.visibility = View.GONE
     }
 
     override fun hideLoading() {
-
+        rvListArt.visibility = View.VISIBLE
+        avLoading.visibility = View.GONE
     }
-
 
     override fun onDestroy() {
         super.onDestroy()

@@ -1,6 +1,7 @@
 package com.scoproject.rijksmuseum.features.detailart.presentation
 
 import android.os.Bundle
+import android.view.View
 import com.bumptech.glide.Glide
 import com.scoproject.base.external.extensions.showToast
 import com.scoproject.base.presentation.ui.activity.BaseActivity
@@ -47,11 +48,13 @@ class DetailArtActivity : BaseActivity(), DetailArtContract.View {
     }
 
     override fun showLoading() {
-
+        svDetailArt.visibility = View.GONE
+        avLoading.visibility = View.VISIBLE
     }
 
     override fun hideLoading() {
-
+        svDetailArt.visibility = View.VISIBLE
+        avLoading.visibility = View.GONE
     }
 
 

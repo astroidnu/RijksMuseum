@@ -16,10 +16,13 @@ class ListArtPresenter @Inject constructor(private val useCase: ListArtUseCase,
         ListArtContract.UserActionListener {
 
     override fun getCollections() {
+        view?.showLoading()
         addDisposable(useCase.getCollections()
                 .subscribe({ response ->
-                        view?.setupAdapter(response)
+                    view?.hideLoading()
+                    view?.setupAdapter(response)
                 }, { err ->
+                    view?.hideLoading()
                     Log.d(javaClass.name, err.message.toString())
                 }))
     }

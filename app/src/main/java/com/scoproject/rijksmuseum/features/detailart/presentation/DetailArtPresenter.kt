@@ -14,11 +14,14 @@ class DetailArtPresenter @Inject constructor(private val useCase: DetailArtUseCa
         BasePresenter<DetailArtContract.View>(schedulerProvider),
         DetailArtContract.UserActionListener {
     override fun getDetailCollection(objectNumber: String) {
+        view?.showLoading()
         addDisposable(useCase.getDetailCollection(objectNumber)
                 .subscribe({ response ->
+                    view?.hideLoading()
                     view?.setupContent(response.artObject?.webImage?.url,
                             response.artObject?.label?.description)
                 }, { err ->
+                    view?.hideLoading()
                     view?.showError(err.message.toString())
                 }))
     }

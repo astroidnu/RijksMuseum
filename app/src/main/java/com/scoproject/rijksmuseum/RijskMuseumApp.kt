@@ -16,6 +16,7 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 09/09/18.
  * Mobile Engineer
  */
+
 class RijskMuseumApp : MultiDexApplication(), HasActivityInjector {
     companion object {
         @JvmStatic
@@ -28,10 +29,9 @@ class RijskMuseumApp : MultiDexApplication(), HasActivityInjector {
     @Inject
     lateinit var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>
 
-
     override fun onCreate() {
         super.onCreate()
-        //Create App Component
+        //  Create App Component
         appComponent = createComponent()
         appComponent.inject(this)
 
@@ -39,14 +39,12 @@ class RijskMuseumApp : MultiDexApplication(), HasActivityInjector {
             val started = AndroidObjectBrowser(mBoxStore).start(this)
             Log.i("ObjectBrowser", "Started: $started")
         }
-
     }
 
     /**
      * Initialize Dependency Injection With Dagger
      * Level DI Application
      * */
-
 
     private fun createComponent(): AppComponent {
         return DaggerAppComponent.builder()

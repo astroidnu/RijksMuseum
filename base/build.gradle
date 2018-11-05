@@ -36,6 +36,9 @@ android {
     }
 }
 
+configurations {
+    ktlint
+}
 
 kapt {
     generateStubs = false
@@ -108,7 +111,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
     //objectBox
     debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"

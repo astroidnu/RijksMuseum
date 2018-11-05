@@ -9,6 +9,6 @@ import io.reactivex.Observable
  * Mobile Engineer
  */
 interface RijskRepository {
-    fun getCollections() : Observable<ArtObject.Response>
-    fun getDetailCollection(objectNumber: String) : Observable<DetailArtObject.Response>
+    fun getCollections(): Observable<ArtObject.Response>
+    fun getDetailCollection(objectNumber: String): Observable<DetailArtObject.Response>
 }

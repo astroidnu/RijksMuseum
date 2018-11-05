@@ -36,6 +36,28 @@ kapt {
     generateStubs = false
 }
 
+configurations {
+    ktlint
+}
+
+task ktlint(type: JavaExec, group: "verification") {
+    description = "Check Kotlin code style."
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "src/**/*.kt"
+    // to generate report in checkstyle format prepend following args:
+    args "--reporter=plain", "--reporter=checkstyle,output=${buildDir}/ktlint.xml"
+    // see https://github.com/shyiko/ktlint#usage for more
+}
+check.dependsOn ktlint
+
+task ktlintFormat(type: JavaExec, group: "formatting") {
+    description = "Fix Kotlin code style deviations."
+    main = "com.github.shyiko.ktlint.Main"
+    classpath = configurations.ktlint
+    args "-F", "src/**/*.kt"
+}
+
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
@@ -108,7 +130,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.8.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.8.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
 
     //objectBox
     debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectboxVersion"
@@ -118,6 +140,9 @@ dependencies {
 
     //Circular ImageView
     implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //ktlint
+    ktlint "com.github.shyiko:ktlint:0.29.0"
 }
 
 apply plugin: 'io.objectbox'

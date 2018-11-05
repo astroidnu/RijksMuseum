@@ -11,7 +11,7 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class RijskDataStore @Inject constructor(private val service : RijksService, private val scheduler : SchedulerProvider) : RijskRepository {
+class RijskDataStore @Inject constructor(private val service: RijksService, private val scheduler: SchedulerProvider) : RijskRepository {
 
     override fun getDetailCollection(objectNumber: String): Observable<DetailArtObject.Response> {
         return service.getDetailCollection(objectNumber)

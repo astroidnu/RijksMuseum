@@ -40,7 +40,4 @@ class LoginPresenter @Inject constructor(private val userModel: UserModel,
         return userModel.getUserData(userName,password)!= null
 
     }
-
-
-
 }

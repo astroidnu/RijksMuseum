@@ -20,8 +20,6 @@ import java.util.concurrent.TimeUnit
 
 @Module
 abstract class BaseNetworkModule{
-
-
     @Provides
     fun provideOkhttpClient(application: Application): OkHttpClient {
         val cache = Cache(application.cacheDir, 10 * 1024 * 1024)

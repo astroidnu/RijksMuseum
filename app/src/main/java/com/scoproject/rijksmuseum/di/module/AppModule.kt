@@ -31,6 +31,4 @@ class AppModule {
 
     @Provides @AppScope
     internal fun provideHelper() = Helper()
-
-
 }

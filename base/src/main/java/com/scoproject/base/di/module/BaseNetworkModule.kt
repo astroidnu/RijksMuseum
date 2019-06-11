@@ -1,6 +1,7 @@
 package com.scoproject.base.di.module
 
 import android.app.Application
+import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.scoproject.base.BuildConfig
 import com.scoproject.base.external.network.HeaderInterceptor
 import dagger.Module
@@ -9,7 +10,6 @@ import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 
@@ -19,7 +19,7 @@ import java.util.concurrent.TimeUnit
  */
 
 @Module
-abstract class BaseNetworkModule{
+abstract class BaseNetworkModule {
     @Provides
     fun provideOkhttpClient(application: Application): OkHttpClient {
         val cache = Cache(application.cacheDir, 10 * 1024 * 1024)
@@ -27,7 +27,7 @@ abstract class BaseNetworkModule{
         val loggingInterceptor = HttpLoggingInterceptor()
         loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
-        return  OkHttpClient.Builder()
+        return OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
                 .addInterceptor(HeaderInterceptor())
                 .cache(cache)
@@ -42,7 +42,7 @@ abstract class BaseNetworkModule{
         val builder = Retrofit.Builder()
         builder.client(okHttpClient)
                 .baseUrl(BuildConfig.BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addCallAdapterFactory(CoroutineCallAdapterFactory())
                 .addConverterFactory(GsonConverterFactory.create())
         return builder.build()
     }

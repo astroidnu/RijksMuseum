@@ -24,18 +24,19 @@ class ListArtActivity : BaseNavigationDrawerActivity(), ListArtContract.View {
     lateinit var mPresenter: ListArtPresenter
 
     @Inject
-    lateinit var mRouter : ListArtRouter
+    lateinit var mRouter: ListArtRouter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-      val inflater = layoutInflater
+        val inflater = layoutInflater
         val container: LinearLayout = findViewById(R.id.content_frame)
         inflater.inflate(R.layout.activity_list_art, container)
         mPresenter.attachView(this)
         mPresenter.getCollections()
     }
 
-    override fun setupAdapter(data:ArtObject.Response) {
+    override fun setupAdapter(data: ArtObject.Response) {
         rvListArt?.setUp(data.data!!, R.layout.item_list_art, { it ->
             val objectNumber = it.objectNumber
             tvTitleArt.text = it.title
@@ -44,7 +45,7 @@ class ListArtActivity : BaseNavigationDrawerActivity(), ListArtContract.View {
                     .into(ivThumbArt)
 
             llItemArt.setOnClickListener {
-                objectNumber?.let{
+                objectNumber?.let {
                     mRouter.navigateToDetailCollection(it)
                 }
             }

@@ -1,11 +1,8 @@
 package com.scoproject.rijksmuseum.features.listart.di
 
 import com.scoproject.base.di.scope.ActivityScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.data.network.RijksService
-import com.scoproject.rijksmuseum.data.repository.RijskDataStore
-import com.scoproject.rijksmuseum.data.repository.RijskRepository
 import com.scoproject.rijksmuseum.features.listart.domain.ListArtRouter
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtActivity
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtContract
@@ -27,20 +24,17 @@ class ListArtModule {
         return activity
     }
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     fun provideRouter(screen: ScreenRouter, activity: ListArtActivity) = ListArtRouter(screen, activity)
 
-    @Provides @ActivityScope
-    fun repository(restService: RijksService, appSchedulerProvider: AppSchedulerProvider): RijskRepository
-            = RijskDataStore(restService, appSchedulerProvider)
-
-    @Provides @ActivityScope
-    fun usecase(repository: RijskRepository): ListArtUseCase = ListArtInteractor(repository)
+    @Provides
+    @ActivityScope
+    fun usecase(rijsService: RijksService): ListArtUseCase = ListArtInteractor(rijsService)
 
 
-    @Provides @ActivityScope
-    internal fun provideListArtPresenter(useCase: ListArtUseCase,
-                                         scheduler: AppSchedulerProvider) =
-            ListArtPresenter(useCase,
-                    scheduler)
+    @Provides
+    @ActivityScope
+    internal fun provideListArtPresenter(listArtUseCase: ListArtUseCase) =
+            ListArtPresenter(listArtUseCase)
 }

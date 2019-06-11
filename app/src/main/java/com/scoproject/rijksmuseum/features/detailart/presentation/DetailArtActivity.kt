@@ -37,14 +37,18 @@ class DetailArtActivity : BaseActivity(), DetailArtContract.View {
     }
 
     override fun setupContent(imageUrl: String?, artDesc: String?) {
+        loadImage(imageUrl)
         tvDescriptionArt.text = artDesc
+    }
+
+    private fun loadImage(url: String?) {
         Glide.with(this)
-                .load(imageUrl)
+                .load(url)
                 .into(ivDetailArt)
     }
 
     override fun showError(msg: String) {
-       showToast(msg)
+        showToast(msg)
     }
 
     override fun showLoading() {

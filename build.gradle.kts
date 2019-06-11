@@ -13,6 +13,7 @@ buildscript {
     repositories {
         google()
         jcenter()
+        maven ("https://jitpack.io")
         mavenCentral()
     }
 

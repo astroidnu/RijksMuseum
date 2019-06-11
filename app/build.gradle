@@ -161,7 +161,6 @@ dependencies {
     testImplementation "com.nhaarman:mockito-kotlin-kt1.1:1.5.0"
     testImplementation 'com.squareup.okhttp3:mockwebserver:3.9.1'
 
-
     //Kotlin Dependencies Kapt
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:1.3.30"
 
@@ -180,14 +179,9 @@ dependencies {
     implementation supportDependencies.contraintLayout
     implementation supportDependencies.multidex
 
-    //RxJava 2
-    implementation rxDependencies.rxJava
-    implementation rxDependencies.rxAndroid
-
     //Retrofit Dependencies
     implementation retrofitDependencies.retrofit
     implementation retrofitDependencies.converterGson
-    implementation retrofitDependencies.rxAdapterJava
 
     //Okhttp Dependencies
     implementation okhttpDependencies.okhttp

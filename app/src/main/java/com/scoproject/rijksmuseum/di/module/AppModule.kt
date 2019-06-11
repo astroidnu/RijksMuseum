@@ -4,7 +4,6 @@ import android.app.Application
 import android.content.Context
 import com.scoproject.base.data.database.MyObjectBox
 import com.scoproject.base.di.scope.AppScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.presentation.ScreenRouterImpl
@@ -19,9 +18,6 @@ import dagger.Provides
 class AppModule {
     @Provides @AppScope
     internal fun provideContext(application: Application): Context = application
-
-    @Provides @AppScope
-    fun provideSchedulerProvider() = AppSchedulerProvider()
 
     @Provides @AppScope
     fun provideScreenRouter(): ScreenRouter = ScreenRouterImpl()

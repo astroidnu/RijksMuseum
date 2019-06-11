@@ -6,6 +6,7 @@ import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.base.presentation.ui.view.BaseView
 import dagger.android.AndroidInjection
 
+
 /**
  * Created by ibnumuzzakkir on 09/09/18.
  * Mobile Engineer

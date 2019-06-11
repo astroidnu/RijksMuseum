@@ -1,7 +1,6 @@
 package com.scoproject.rijksmuseum.features.profile.di
 
 import com.scoproject.base.di.scope.ActivityScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.features.profile.domain.ProfileRouter
 import com.scoproject.rijksmuseum.features.profile.presentation.ProfileActivity
@@ -23,15 +22,15 @@ class ProfileModule {
         return activity
     }
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     fun provideRouter(screen: ScreenRouter, activity: ProfileActivity) = ProfileRouter(screen, activity)
 
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     internal fun provideListArtPresenter(router: ProfileRouter,
-                                         loginSession: LoginSession,
-                                         scheduler: AppSchedulerProvider) =
+                                         loginSession: LoginSession) =
             ProfilePresenter(router,
-                    loginSession,
-                    scheduler)
+                    loginSession)
 }

@@ -17,9 +17,8 @@ import kotlinx.android.synthetic.main.app_bar_main.*
 import javax.inject.Inject
 
 
-
-
 abstract class BaseNavigationDrawerActivity : BaseActivity(), NavigationView.OnNavigationItemSelectedListener {
+
     @Inject
     lateinit var mLoginSession: LoginSession
 
@@ -39,8 +38,8 @@ abstract class BaseNavigationDrawerActivity : BaseActivity(), NavigationView.OnN
 
     }
 
-    private fun setupContentNavBar(){
-        val userName =  mLoginSession.getUsername()
+    private fun setupContentNavBar() {
+        val userName = mLoginSession.getUsername()
         val headerView = nav_view.getHeaderView(0)
         val navUsername = headerView.findViewById(R.id.tvNavUserName) as TextView
         navUsername.text = "Welcome $userName"

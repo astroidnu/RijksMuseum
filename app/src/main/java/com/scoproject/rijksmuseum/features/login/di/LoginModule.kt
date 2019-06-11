@@ -2,7 +2,6 @@ package com.scoproject.rijksmuseum.features.login.di
 
 import com.scoproject.base.data.model.UserModel
 import com.scoproject.base.di.scope.ActivityScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.login.domain.LoginRouter
@@ -25,19 +24,19 @@ class LoginModule {
         return loginActivity
     }
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     fun provideRouter(screen: ScreenRouter, activity: LoginActivity) = LoginRouter(screen, activity)
 
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     internal fun provideLoginPresenter(userModel: UserModel,
                                        loginRouter: LoginRouter,
-                                       helper : Helper,
-                                       loginSession: LoginSession,
-                                       scheduler: AppSchedulerProvider) =
+                                       helper: Helper,
+                                       loginSession: LoginSession) =
             LoginPresenter(userModel,
                     loginRouter,
                     helper,
-                    loginSession,
-                    scheduler)
+                    loginSession)
 }

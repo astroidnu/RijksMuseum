@@ -1,10 +1,7 @@
 package com.scoproject.rijksmuseum.features.detailart.di
 
 import com.scoproject.base.di.scope.ActivityScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.rijksmuseum.data.network.RijksService
-import com.scoproject.rijksmuseum.data.repository.RijskDataStore
-import com.scoproject.rijksmuseum.data.repository.RijskRepository
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtActivity
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtContract
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtPresenter
@@ -25,17 +22,13 @@ class DetailArtModule {
         return activity
     }
 
-    @Provides @ActivityScope
-    fun repository(restService: RijksService, appSchedulerProvider: AppSchedulerProvider): RijskRepository
-            = RijskDataStore(restService, appSchedulerProvider)
-
-    @Provides @ActivityScope
-    fun usecase(repository: RijskRepository): DetailArtUseCase = DetailArtInteractor(repository)
+    @Provides
+    @ActivityScope
+    fun usecase(rijksService: RijksService): DetailArtUseCase = DetailArtInteractor(rijksService)
 
 
-    @Provides @ActivityScope
-    internal fun provideListArtPresenter(useCase: DetailArtUseCase,
-                                         scheduler: AppSchedulerProvider) =
-            DetailArtPresenter(useCase,
-                    scheduler)
+    @Provides
+    @ActivityScope
+    internal fun provideListArtPresenter(rijsUseCase: DetailArtUseCase) =
+            DetailArtPresenter(rijsUseCase)
 }

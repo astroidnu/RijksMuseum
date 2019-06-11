@@ -1,7 +1,6 @@
 package com.scoproject.rijksmuseum.features.splashscreen.di
 
 import com.scoproject.base.di.scope.ActivityScope
-import com.scoproject.base.external.scheduler.AppSchedulerProvider
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.features.splashscreen.domain.SplashRouter
 import com.scoproject.rijksmuseum.features.splashscreen.presentation.SplashScreenActivity
@@ -23,15 +22,14 @@ class SplashScreenModule {
         return activity
     }
 
-    @Provides @ActivityScope
+    @Provides
+    @ActivityScope
     fun provideRouter(screen: ScreenRouter, activity: SplashScreenActivity) = SplashRouter(screen, activity)
 
     @Provides
     @ActivityScope
     internal fun providePresenter(loginSession: LoginSession,
-                                  splashRouter: SplashRouter,
-                                  scheduler: AppSchedulerProvider) =
+                                  splashRouter: SplashRouter) =
             SplashScreenPresenter(loginSession,
-                    splashRouter,
-                    scheduler)
+                    splashRouter)
 }

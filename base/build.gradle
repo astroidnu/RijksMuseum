@@ -1,4 +1,4 @@
-apply plugin: 'com.android.feature'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
@@ -8,9 +8,6 @@ def lifecycle_version = "2.0.0"
 
 android {
     compileSdkVersion 28
-
-
-    baseFeature true
 
     defaultConfig {
         minSdkVersion 16

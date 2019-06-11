@@ -4,7 +4,6 @@ import com.nhaarman.mockito_kotlin.doReturn
 import com.nhaarman.mockito_kotlin.mock
 import com.nhaarman.mockito_kotlin.verify
 import com.scoproject.base.data.model.UserModel
-import com.scoproject.rijksmuseum.data.repository.RijskRepository
 import com.scoproject.rijksmuseum.data.response.ArtObject
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtContract
@@ -13,8 +12,6 @@ import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
 import com.scoproject.rijksmuseum.features.registration.domain.RegistrationRouter
 import com.scoproject.rijksmuseum.util.TestSchedulerProvider
 import com.tunaikumobile.base.data.session.LoginSession
-import io.reactivex.Observable
-import io.reactivex.schedulers.TestScheduler
 import org.junit.After
 import org.junit.Before
 import org.junit.Test
@@ -49,7 +46,7 @@ class ListArtPresenterTest {
 
         doReturn(Observable.just(response))
                 .`when`(mUseCase)
-                .getCollections()
+                .getCollectionsAsync()
         mListArtPresenter.getCollections()
         mTestScheduler.triggerActions()
         verify(mView).showLoading()

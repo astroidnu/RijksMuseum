@@ -166,7 +166,6 @@ dependencies {
 
 
     //Implementation base module
-    testImplementation project(':base')
     implementation project(':base')
 
     //Support Dependencies

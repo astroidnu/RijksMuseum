@@ -9,7 +9,7 @@ import javax.inject.Inject
  * Mobile Engineer
  */
 class ListArtInteractor @Inject constructor(private val rijksService: RijksService) : ListArtUseCase {
-    override suspend fun getCollections(): ArtObject.Response {
+    override suspend fun getCollectionsAsync(): ArtObject.Response {
         return rijksService.getCollectionsAsync().await()
     }
 }

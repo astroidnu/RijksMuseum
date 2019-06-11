@@ -1,6 +1,7 @@
 package com.scoproject.rijksmuseum.features.listart.presentation
 
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
+import com.scoproject.rijksmuseum.data.network.NetworkError
 import com.scoproject.rijksmuseum.data.response.ArtObject
 import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
 import kotlinx.coroutines.Dispatchers
@@ -19,10 +20,16 @@ class ListArtPresenter @Inject constructor(private val listArtUseCase: ListArtUs
 
     override fun getCollections() {
         GlobalScope.launch(Dispatchers.Main) {
-            view?.showLoading()
-            data = listArtUseCase.getCollections()
-            view?.setupAdapter(data)
-            view?.hideLoading()
+            try {
+                view?.showLoading()
+                data = listArtUseCase.getCollectionsAsync()
+                view?.setupAdapter(data)
+                view?.hideLoading()
+            } catch (e: Throwable) {
+                view?.hideLoading()
+                val err = NetworkError(err = e).getErrorMessage()
+                view?.showError(err)
+            }
         }
     }
 }

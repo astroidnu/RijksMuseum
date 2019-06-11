@@ -7,5 +7,5 @@ import com.scoproject.rijksmuseum.features.detailart.data.vo.DetailArtVO
  * Mobile Engineer
  */
 interface DetailArtUseCase {
-    suspend fun getDetailCollection(objectNumber: String) : DetailArtVO
+    suspend fun getDetailCollection(objectNumber: String): DetailArtVO
 }

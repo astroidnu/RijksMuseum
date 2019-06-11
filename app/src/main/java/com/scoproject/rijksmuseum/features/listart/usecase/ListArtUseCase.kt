@@ -7,5 +7,5 @@ import com.scoproject.rijksmuseum.data.response.ArtObject
  * Mobile Engineer
  */
 interface ListArtUseCase {
-    suspend fun getCollections(): ArtObject.Response
+    suspend fun getCollectionsAsync(): ArtObject.Response
 }

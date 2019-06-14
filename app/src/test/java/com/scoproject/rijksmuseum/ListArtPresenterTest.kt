@@ -1,18 +1,19 @@
 package com.scoproject.rijksmuseum
 
-import com.nhaarman.mockito_kotlin.doReturn
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
-import com.scoproject.base.data.model.UserModel
+import com.nhaarman.mockitokotlin2.doReturn
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.scoproject.rijksmuseum.data.response.ArtObject
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtContract
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtPresenter
 import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
-import com.scoproject.rijksmuseum.features.registration.domain.RegistrationRouter
-import com.scoproject.rijksmuseum.util.TestSchedulerProvider
-import com.tunaikumobile.base.data.session.LoginSession
+import com.scoproject.rijksmuseum.util.TestContextCoroutineProvider
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 import org.junit.After
+import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
 
@@ -24,36 +25,37 @@ class ListArtPresenterTest {
     private lateinit var mListArtPresenter : ListArtPresenter
     private val mView: ListArtContract.View = mock()
     private lateinit var mHelper : Helper
-    private val mLoginSession: LoginSession = mock()
-    private val mUserModel: UserModel = mock()
     private val mUseCase: ListArtUseCase = mock()
-    private val mLoginRouter: RegistrationRouter = mock()
+    private lateinit var testDispatcher: TestContextCoroutineProvider
 
     @Before
-    fun setUp() {
+    fun `Setup`() {
         mHelper = Helper()
-        mTestScheduler = TestScheduler()
-        val testSchedulerProvider = TestSchedulerProvider(mTestScheduler)
-        mListArtPresenter = ListArtPresenter(mUseCase, testSchedulerProvider)
+        testDispatcher = TestContextCoroutineProvider()
+        mListArtPresenter = ListArtPresenter(mUseCase, testDispatcher)
         mListArtPresenter.attachView(mView)
     }
 
     @Test
-    fun getCollectionShouldReturnSuccess() {
+    fun `Get List Art Should Be Success`() = runBlocking {
         val response : ArtObject.Response = mock()
+        launch(Dispatchers.Unconfined) {
+            doReturn(response)
+                    .`when`(mUseCase)
+                    .getCollectionsAsync()
 
-        doReturn(Observable.just(response))
-                .`when`(mUseCase)
-                .getCollectionsAsync()
+            Assert.assertEquals(mUseCase.getCollectionsAsync(), response)
+        }
         mListArtPresenter.getCollections()
-        mTestScheduler.triggerActions()
+
         verify(mView).showLoading()
-        verify(mView).setupAdapter(response)
+        verify(mView).setupAdapter(mUseCase.getCollectionsAsync())
         verify(mView).hideLoading()
+
     }
 
     @After
-    fun tearDown(){
+    fun `TearDown`() {
         mListArtPresenter.detachView()
     }
 }

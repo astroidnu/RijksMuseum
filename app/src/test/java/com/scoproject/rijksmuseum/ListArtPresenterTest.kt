@@ -22,8 +22,6 @@ import org.junit.Test
  */
 class ListArtPresenterTest {
     private lateinit var mListArtPresenter : ListArtPresenter
-    private lateinit var mTestScheduler: TestScheduler
-    private var mRepository: RijskRepository = mock()
     private val mView: ListArtContract.View = mock()
     private lateinit var mHelper : Helper
     private val mLoginSession: LoginSession = mock()

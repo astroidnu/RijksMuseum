@@ -2,6 +2,7 @@ package com.scoproject.rijksmuseum.features.detailart.di
 
 import com.scoproject.base.di.scope.ActivityScope
 import com.scoproject.rijksmuseum.data.network.RijksService
+import com.scoproject.rijksmuseum.external.AppContextCoroutineProvider
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtActivity
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtContract
 import com.scoproject.rijksmuseum.features.detailart.presentation.DetailArtPresenter
@@ -29,6 +30,6 @@ class DetailArtModule {
 
     @Provides
     @ActivityScope
-    internal fun provideListArtPresenter(rijsUseCase: DetailArtUseCase) =
-            DetailArtPresenter(rijsUseCase)
+    internal fun provideListArtPresenter(rijsUseCase: DetailArtUseCase, appContextCoroutineProvider: AppContextCoroutineProvider) =
+            DetailArtPresenter(rijsUseCase,appContextCoroutineProvider)
 }

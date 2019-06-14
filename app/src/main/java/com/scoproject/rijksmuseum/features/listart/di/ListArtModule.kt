@@ -3,6 +3,7 @@ package com.scoproject.rijksmuseum.features.listart.di
 import com.scoproject.base.di.scope.ActivityScope
 import com.scoproject.base.presentation.ui.router.ScreenRouter
 import com.scoproject.rijksmuseum.data.network.RijksService
+import com.scoproject.rijksmuseum.external.AppContextCoroutineProvider
 import com.scoproject.rijksmuseum.features.listart.domain.ListArtRouter
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtActivity
 import com.scoproject.rijksmuseum.features.listart.presentation.ListArtContract
@@ -11,6 +12,8 @@ import com.scoproject.rijksmuseum.features.listart.usecase.ListArtInteractor
 import com.scoproject.rijksmuseum.features.listart.usecase.ListArtUseCase
 import dagger.Module
 import dagger.Provides
+import kotlinx.coroutines.Dispatchers
+import kotlin.coroutines.CoroutineContext
 
 /**
  * Created by ibnumuzzakkir on 10/09/18.
@@ -35,6 +38,6 @@ class ListArtModule {
 
     @Provides
     @ActivityScope
-    internal fun provideListArtPresenter(listArtUseCase: ListArtUseCase) =
-            ListArtPresenter(listArtUseCase)
+    internal fun provideListArtPresenter(listArtUseCase: ListArtUseCase, appContextCoroutineProvider: AppContextCoroutineProvider) =
+            ListArtPresenter(listArtUseCase, appContextCoroutineProvider)
 }

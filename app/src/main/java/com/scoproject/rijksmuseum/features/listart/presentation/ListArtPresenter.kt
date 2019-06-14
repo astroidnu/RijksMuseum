@@ -1,5 +1,6 @@
 package com.scoproject.rijksmuseum.features.listart.presentation
 
+import com.scoproject.base.external.ContextCoroutineProvider
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.rijksmuseum.data.network.NetworkError
 import com.scoproject.rijksmuseum.data.response.ArtObject
@@ -13,13 +14,14 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class ListArtPresenter @Inject constructor(private val listArtUseCase: ListArtUseCase) :
+class ListArtPresenter @Inject constructor(private val listArtUseCase: ListArtUseCase,
+                                           private val coroutineContext: ContextCoroutineProvider) :
         BasePresenter<ListArtContract.View>(),
         ListArtContract.UserActionListener {
     lateinit var data: ArtObject.Response
 
     override fun getCollections() {
-        GlobalScope.launch(Dispatchers.Main) {
+        GlobalScope.launch(coroutineContext.uiDispatcher()){
             try {
                 view?.showLoading()
                 data = listArtUseCase.getCollectionsAsync()

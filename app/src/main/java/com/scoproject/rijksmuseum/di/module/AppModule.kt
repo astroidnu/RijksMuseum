@@ -5,6 +5,7 @@ import android.content.Context
 import com.scoproject.base.data.database.MyObjectBox
 import com.scoproject.base.di.scope.AppScope
 import com.scoproject.base.presentation.ui.router.ScreenRouter
+import com.scoproject.rijksmuseum.external.AppContextCoroutineProvider
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.presentation.ScreenRouterImpl
 import dagger.Module
@@ -27,4 +28,7 @@ class AppModule {
 
     @Provides @AppScope
     internal fun provideHelper() = Helper()
+
+    @Provides @AppScope
+    internal fun provideAppContextCoroutineProvider() = AppContextCoroutineProvider()
 }

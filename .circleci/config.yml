@@ -9,39 +9,39 @@ jobs:
       JVM_OPTS: -Xmx4096m
       TERM: dumb
       steps:
-      - checkout
+        - checkout
         # Download and cache all dependencies
-      - run:
-          name: Update Dependencies
-          command: sudo apt-get update
-      - run:
-          name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
-          command: sudo chmod +x ./gradlew
+        - run:
+            name: Update Dependencies
+            command: sudo apt-get update
+        - run:
+            name: Chmod permissions #if permission for Gradlew Dependencies fail, use this.
+            command: sudo chmod +x ./gradlew
 
-      - restore_cache:
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        - restore_cache:
+            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      - run:
-          name: Download Dependencies
-          command: ./gradlew androidDependencies
+        - run:
+            name: Download Dependencies
+            command: ./gradlew androidDependencies
 
-      - save_cache:
-          paths:
-            - ~/.gradle
-          key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
+        - save_cache:
+            paths:
+              - ~/.gradle
+            key: jars-{{ checksum "build.gradle" }}-{{ checksum  "app/build.gradle" }}
 
-      - run:
-          name: Run Clean Gradle
-          command:  ./gradlew clean
+        - run:
+            name: Run Clean Gradle
+            command:  ./gradlew clean
 
-      - run:
-          name: Run Tests
-          command: ./gradlew lint test
+        - run:
+            name: Run Tests
+            command: ./gradlew lint test
 
-      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
-          path: app/build/reports
-          destination: reports
+        - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/
+            path: app/build/reports
+            destination: reports
 
-      - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
-          path: app/build/test-results
+        - store_test_results: # for display in Test Summary: https://circleci.com/docs/2.0/collect-test-data/
+            path: app/build/test-results
       # See https://circleci.com/docs/2.0/deployment-integrations/ for deploy examples

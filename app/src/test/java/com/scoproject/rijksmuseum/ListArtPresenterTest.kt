@@ -51,7 +51,23 @@ class ListArtPresenterTest {
         verify(mView).showLoading()
         verify(mView).setupAdapter(mUseCase.getCollectionsAsync())
         verify(mView).hideLoading()
+    }
 
+    @Test
+    fun `Error Not Handle When Get List Art`() = runBlocking {
+        val errorResponse = Throwable()
+
+        launch(Dispatchers.Unconfined) {
+            doReturn(errorResponse)
+                    .`when`(mUseCase)
+                    .getCollectionsAsync()
+        }
+
+        mListArtPresenter.getCollections()
+
+        verify(mView).showLoading()
+        verify(mView).showError("Something went wrong! Please try again.")
+        verify(mView).hideLoading()
     }
 
     @After

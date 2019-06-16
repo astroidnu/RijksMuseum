@@ -1,5 +1,7 @@
 package com.scoproject.base
 
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.scoproject.base.presentation.ui.presenter.BasePresenter
 import com.scoproject.base.presentation.ui.view.BaseView
 import org.junit.After

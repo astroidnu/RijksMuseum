@@ -54,6 +54,9 @@ dependencies {
         exclude module: 'support-annotations'
     }
 
+    api 'org.glassfish:javax.annotation:10.0-b28'
+
+
     // Espresso support
     androidTestImplementation(espressoDependencies.espressoCore) {
         exclude group: 'com.android.support', module: 'support-annotations'

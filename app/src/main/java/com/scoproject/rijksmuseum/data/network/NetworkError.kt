@@ -16,15 +16,11 @@ class NetworkError(var err: Throwable) : Throwable() {
         const val NETWORK_ERROR_MESSAGE = "No Internet Connection!"
     }
 
-    private var mListErrorResponse = ArrayList<String>()
-
     fun getErrorMessage(): String {
         if (err is IOException) {
             return NETWORK_ERROR_MESSAGE
         }
-        if (err !is HttpException) {
-            return DEFAULT_ERROR_MESSAGE
-        }
+
         if (getHttpErrorCode()!! == 404 || getHttpErrorCode()!! >= 500) {
             DEFAULT_ERROR_MESSAGE = "Server sedang bermasalah"
         }

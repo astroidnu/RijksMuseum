@@ -9,14 +9,13 @@ import javax.inject.Inject
  * Created by ibnumuzzakkir on 10/09/18.
  * Mobile Engineer
  */
-class SplashScreenPresenter @Inject constructor(val loginSession: LoginSession,
-                                                val splashRouter: SplashRouter) :
+class SplashScreenPresenter @Inject constructor(private val loginSession: LoginSession,
+                                                private val splashRouter: SplashRouter) :
         BasePresenter<SplashScreenContract.View>(), SplashScreenContract.UserActionListener {
 
     /**
      * Checking user login state
      * */
-
     override fun checkUserLogin() {
         if (loginSession.getUsername().isNotEmpty()) {
             splashRouter.goToMainPage()
@@ -24,5 +23,4 @@ class SplashScreenPresenter @Inject constructor(val loginSession: LoginSession,
             splashRouter.goToLoginPage()
         }
     }
-
 }

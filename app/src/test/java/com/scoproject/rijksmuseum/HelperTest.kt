@@ -42,6 +42,4 @@ class HelperTest {
     fun passwordIsNotValid() {
         assertEquals(mHelper.isPasswordValid(""), false)
     }
-
-
 }

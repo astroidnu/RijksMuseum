@@ -78,7 +78,9 @@ task jacocoTestReport(type: JacocoReport, dependsOn: "testDebugUnitTest") {
             '**/*VO.class',
             '**/data/response/*.*',
             '**/RestConstant.class',
-            '**/external/*.*',
+            '**/AppConstants.*',
+            '**/AppContextCoroutineProvider.*',
+            '**/BaseViewModel.*',
             '**/ScreenRouterImpl.class',
             '**/*Router.class',
             '**/presentation/BaseNavigationDrawerActivity.class',
@@ -204,7 +206,7 @@ dependencies {
 
     //Glide
     implementation 'com.github.bumptech.glide:glide:4.9.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+    kapt 'com.github.bumptech.glide:compiler:4.9.0'
 
     //objectBox
     debugImplementation "io.objectbox:objectbox-android-objectbrowser:$objectBoxVersion"

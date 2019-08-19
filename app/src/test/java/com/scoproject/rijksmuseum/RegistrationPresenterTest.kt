@@ -1,7 +1,7 @@
 package com.scoproject.rijksmuseum
 
-import com.nhaarman.mockito_kotlin.mock
-import com.nhaarman.mockito_kotlin.verify
+import com.nhaarman.mockitokotlin2.mock
+import com.nhaarman.mockitokotlin2.verify
 import com.scoproject.base.data.model.UserModel
 import com.scoproject.rijksmuseum.external.Helper
 import com.scoproject.rijksmuseum.features.registration.domain.RegistrationRouter

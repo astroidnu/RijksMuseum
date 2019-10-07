@@ -39,7 +39,6 @@ class RijskMuseumApp : MultiDexApplication(), HasActivityInjector {
             val started = AndroidObjectBrowser(mBoxStore).start(this)
             Log.i("ObjectBrowser", "Started: $started")
         }
-
     }
 
     /**
